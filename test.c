@@ -47,6 +47,34 @@ int ListLength(LinkList l)
 	}
 	return i;
 }
+
+//根据序号返回其中的值
+int* getElem(LinkList l,int n)
+{
+	Node* p;
+	p = l->next;
+	int j = 1;
+	while (p && j < n)
+	{
+		p = p->next;
+		j++;
+	}
+	return p->data;
+}
+
+//通过值找对应的节点
+Node* LocateElem(LinkList l, int x)
+{
+	Node* p;
+	p = l->next;
+	while (p)
+	{
+		if (p->data == x)
+			break;
+		p = p->next;
+	}
+	return p;
+}
 int main()
 {
 	return 0;
