@@ -75,6 +75,63 @@ Node* LocateElem(LinkList l, int x)
 	}
 	return p;
 }
+
+//判断是否有后继
+int* NextElem(LinkList l, int data, int* nextData)
+{
+	Node* p;
+	p = l->next;
+	while (p)
+	{
+		if (p->data == data && p->next != NULL)
+		{
+			nextData = p->next;
+			return nextData;
+		}
+		p = p->next;
+	}
+}
+
+//判断是否有前驱
+bool priorElem(LinkList l, int data)
+{
+	Node* p,* r;
+	p = l->next;
+	r = l;      //r为p的前驱
+	if (p->data == data)
+	{
+		return false;
+	}
+	return true;
+}
+
+//在第i个前插入新的元素       没有考虑出现错误的情况
+bool Insert(LinkList l, int i, int data)
+{
+	Node* p, * n;
+	p = l->next;
+	n = (Node*)malloc(sizeof(Node));
+	if (i == 1)
+	{
+		n->data = data;
+		n->next = p;
+		l->next = n;
+		return true;
+	}
+	if(i != 1)
+	{
+		int j = 1;
+		for (j = 1; j < i; j++)
+		{
+			p = p->next;
+		}
+		n->data = data;
+		n->next = p->next;
+		p->next = n;
+		return true;
+	}
+}
+
 int main()
 {
 	return 0;
