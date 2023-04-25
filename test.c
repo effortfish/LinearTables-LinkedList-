@@ -132,6 +132,76 @@ bool Insert(LinkList l, int i, int data)
 	}
 }
 
+//删除第i个数据元素
+bool deleteList(LinkList l, int i)
+{
+	Node* p, * n;
+	p = l->next;
+	if (i == 1)
+	{
+		l->next = p->next;
+		free(p);
+		return true;
+	}
+	if (i != 1)
+	{
+		int j = 1;
+		for (j = 1; j < i; j++)
+		{
+			p = p->next;
+		}
+		n = p->next;
+		p->next = n->next;
+		free(n);
+		return true;
+	}
+}
+
+//遍历链表
+bool traverseList(LinkList l)
+{
+	Node* p;
+	p = l->next;
+	while (p)
+	{
+		printf("%d ", p->data);
+		p = p->next;
+	}
+	return true;
+}
+
+//建立带表头的链表（头插法）
+void CreateListHead(LinkList l, int n)
+{
+	Node* p;
+	int a = 0;
+	InitList(l);
+	for (int i = 0; i < n; i++)
+	{
+		p = (Node*)malloc(sizeof(Node));
+		scanf("%d", &a);
+		p->data = a;
+		p->next = l->next;
+		l->next = p;
+	}
+}
+
+//建立带表头的链表（尾插法）
+void CreateListTail(LinkList l, int x)
+{
+	Node* p, * n;
+	InitList(l);
+	n = l;       //指向尾结点得指针
+	for (int i = 0; i < x; i++)
+	{
+		p = (Node*)malloc(sizeof(Node));
+		scanf("%d", &(p->data));
+		n->next = p;
+		n = p;
+	}
+	n->next = NULL;
+}
+
 int main()
 {
 	return 0;
